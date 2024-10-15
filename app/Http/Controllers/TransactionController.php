@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -30,9 +31,9 @@ class TransactionController extends Controller
             'fecha'=>'required',
             'transactiontype_id'=>'required|exists:transactiontypes,id'
            ]);
-   
-           $transaccion = transaction::create($request->all());
-   
+           $user_id= Auth::id();
+           $request['user_id']=$user_id;
+           $transaccion = transaction::create($request->all()); 
            return response()->json($transaccion);
        }
    

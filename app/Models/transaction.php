@@ -11,8 +11,7 @@ class transaction extends Model
     use HasFactory;
 
     protected $fillable =[
-        'motivo','monto','fecha','transactiontype_id'
-    ];
+        'motivo','monto','fecha','transactiontype_id','user_id'];
 
     protected $allowIncluded = ['transactiontype']; //las posibles Querys que se pueden realizar
 
@@ -43,7 +42,6 @@ class transaction extends Model
 
     }
 
-    
 
     public function transactiontype(){
         return $this->belongsTo(transactiontype::class, 'transactiontype_id');
